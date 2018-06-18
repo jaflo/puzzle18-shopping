@@ -1,0 +1,105 @@
+<div class="cart">
+	<div class="greeting">
+		<strong>Thank you for shopping with us, {{name}}!</strong>
+		Please verify the details below to complete your order.
+	</div>
+
+	<div class="receipt">
+		<h2>Shopping Cart</h2>
+		<div>
+			<span>Puzzle unlock</span>
+			{{total}}.00
+		</div>
+		{{#each promos}}
+		<div class="promo">
+			<span>Promo code ({{this}})</span>
+			-1.00
+		</div>
+		{{/each}}
+		<div class="divider">
+			<span></span>
+			=======
+		</div>
+		<div class="total">
+			<span>Amount due</span>
+			<strong>{{amountdue}}.00</strong>
+		</div>
+		<div class="center">Customer Copy</div>
+	</div>
+
+	<form action="/applypromo" class="promo" method="post">
+		<h2>Promo Code</h2>
+		{{#if needscaptcha}}
+		<div class="alert">
+			We have detected suspicious activity from your device,
+			please complete the security check below.
+		</div>
+		<div class="captcha">
+			<button class="checkbox" type="button"></button>
+			<div class="loader"></div>
+			<div class="check"><div class="actual"></div></div>
+			<div class="text">I'm not a robot</div>
+			<div class="logo">
+				<a href="http://freetailhackers.com/" target="_blank"><img src="images/bat.png" /></a>
+				<a href="http://hacktx.com/" target="_blank">haCKTXA</a>
+			</div>
+			<div class="challenge">
+				<div class="prompt">
+					Select all images with
+					<strong>unknown</strong>
+				</div>
+				<div class="grid">
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+				</div>
+				<div class="message"></div>
+				<div class="below">
+					<button class="main" type="button">Verify</button>
+				</div>
+			</div>
+			<input type="hidden" name="challenge" class="challengeid" />
+			<input type="hidden" name="verification" class="verification" />
+		</div>
+		{{/if}}
+		<label for="promocode">
+			Enter any promo codes you wish to apply to this order.
+			<span class="error">{{promoerror}}</span>
+		</label>
+		<div class="main">
+			<input type="text" name="code" class="code" id="promocode" placeholder="" />
+			<button class="apply">Apply</button>
+		</div>
+	</form>
+
+	<div class="continue">
+		<h2>Complete Transaction</h2>
+		<div class="alert">
+			We are having trouble reaching our payment provider.
+			Credit card processing is unavailable.
+			Promo codes may still be applied.
+		</div>
+		{{#if cancontinue}}
+		<a href="{{host}}">Continue</a>
+		{{else}}
+		<a href="#" class="off" title="You have a non-zero amount due.">Continue</a>
+		{{/if}}
+	</div>
+</div>
+
+<footer>A puzzle for <a href="http://hacktx.com/">HackTX 2018</a></footer>
+
+<div id="puzzle2018_cover"></div>
+<div id="puzzle2018_unavailable">
+	<h2>Service unavailable.</h2>
+	<p>
+		We apologize for the inconvenience, but this service is currently unavailable.
+		Please check back later!
+	</p>
+</div>

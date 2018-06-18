@@ -1,0 +1,39 @@
+{
+	"name": "puzzle-shopping",
+	"version": "0.0.1",
+	"private": true,
+	"scripts": {
+		"start": "node ./bin/www"
+	},
+	"dependencies": {
+		"array-shuffle": "^1.0.1",
+		"body-parser": "~1.18.2",
+		"connect-flash": "^0.1.1",
+		"connect-session-sequelize": "^5.2.1",
+		"cookie-parser": "~1.4.3",
+		"dateformat": "^3.0.3",
+		"debug": "~2.6.9",
+		"dotenv": "^6.0.0",
+		"express": "^4.16.3",
+		"express-session": "^1.15.6",
+		"filesize": "^3.6.1",
+		"find-remove": "^1.2.0",
+		"hbs": "~4.0.1",
+		"left-pad": "^1.3.0",
+		"less-middleware": "^3.0.1",
+		"morgan": "~1.9.0",
+		"mysql2": "^1.5.3",
+		"randomstring": "^1.1.5",
+		"request": "^2.87.0",
+		"request-promise": "^4.2.2",
+		"right-pad": "^1.0.1",
+		"sequelize": "^4.37.10",
+		"serve-favicon": "~2.4.5"
+	},
+	"nodemonConfig": {
+		"ignore": [
+			"data/*",
+			"public/*"
+		]
+	}
+}

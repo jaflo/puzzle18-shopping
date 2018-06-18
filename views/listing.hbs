@@ -1,0 +1,12 @@
+<h1>Index of {{path}}</h1>
+<pre><img src="/icons/blank.gif" alt="     "> {{nameHeading}} Last modified         Size  Description
+<hr>
+<img src="/icons/back.gif" alt="[DIR]"> <a href="..">Parent Directory</a> {{partime}}        -
+{{#each contents}}
+{{#if dir}}
+<img src="/icons/folder.gif" alt="[DIR]"> <a href="{{../path}}{{name}}/">{{name}}</a> {{time}} {{size}}
+{{else}}
+<img src="/icons/image2.gif" alt="[IMG]"> <a href="{{../path}}/{{name}}">{{name}}</a> {{time}} {{size}}
+{{/if}}
+{{/each}}
+</pre><hr>

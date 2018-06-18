@@ -1,0 +1,6 @@
+node_modules
+npm-debug.log
+
+data/*.txt
+data/challenges/*.json
+public/images/captcha/*/*.jpg
