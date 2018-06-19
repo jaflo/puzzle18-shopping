@@ -19,7 +19,7 @@ router.get("/", function(req, res, next) {
 		res.redirect(process.env.HOST_SERVICE);
 		return;
 	}
-	if (req.session.promocodes.length >= topass) {
+	if (process.env.HOST_SERVICE && req.session.promocodes.length >= topass) {
 		rp({
 			method: "GET",
 			uri: process.env.HOST_SERVICE+"/api/completed",
@@ -46,7 +46,7 @@ router.get("/start", function(req, res, next) {
 	if (!req.query.token) {
 		// no token?
 		res.redirect(process.env.HOST_SERVICE);
-	} else {
+	} else if (process.env.HOST_SERVICE) {
 		rp({
 			method: "GET",
 			uri: process.env.HOST_SERVICE+"/api/info",
@@ -68,6 +68,11 @@ router.get("/start", function(req, res, next) {
 		}).catch(function(data) {
 			res.send(data.error.message);
 		});
+	} else {
+		req.session.token = "sample token";
+		req.session.name = "Steve";
+		req.session.promocodes = [];
+		res.redirect("/");
 	}
 });
 

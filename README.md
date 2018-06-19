@@ -11,6 +11,8 @@ This project uses Promises and the Fetch API.
 
 ### Without Docker
 
+Try using Docker if you can (see the host setup guide).
+
 1. Setup and start a database service (for example [MariaDB](https://mariadb.org/)).
 2. `npm install` to install needed dependencies (Node.js and npm need to be installed).
 3. Download the [Kaggle Cats and Dogs Dataset](https://www.microsoft.com/en-us/download/details.aspx?id=54765) from Microsoft and place the ZIP file into the `bin` folder.
