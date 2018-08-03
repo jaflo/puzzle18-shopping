@@ -9,6 +9,8 @@ Copy `example.env` to `.env` and change anything needed (probably `PUZZLE_SECRET
 A custom [Zepto.js](https://github.com/madrobby/zepto) build has been included and can be recompiled using `MODULES="zepto event fx fx_methods" npm run-script dist`.
 This project uses Promises and the Fetch API.
 
+Entrance URL: `http://localhost:3001/start`
+
 ### Without Docker
 
 Try using Docker if you can (see the host setup guide).

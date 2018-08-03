@@ -16,7 +16,7 @@ var topass = process.env.COUPONS_FINISH,
 router.get("/", function(req, res, next) {
 	if (!req.session.token) {
 		// need to authenticate
-		res.redirect(process.env.HOST_SERVICE);
+		res.redirect(process.env.REDIRECT_ON_COMPETE);
 		return;
 	}
 	if (process.env.HOST_SERVICE && req.session.promocodes.length >= topass) {
@@ -45,7 +45,7 @@ router.get("/", function(req, res, next) {
 router.get("/start", function(req, res, next) {
 	if (!req.query.token) {
 		// no token?
-		res.redirect(process.env.HOST_SERVICE);
+		res.redirect(process.env.REDIRECT_ON_COMPETE);
 	} else if (process.env.HOST_SERVICE) {
 		rp({
 			method: "GET",
@@ -63,7 +63,7 @@ router.get("/start", function(req, res, next) {
 				res.redirect("/");
 			} else {
 				// does not have access or something happened
-				res.redirect(process.env.HOST_SERVICE);
+				res.redirect(process.env.REDIRECT_ON_COMPETE);
 			}
 		}).catch(function(data) {
 			res.send(data.error.message);
