@@ -1,11 +1,12 @@
 var fs = require("fs");
+var path = require("path");
 var arrayShuffle = require("array-shuffle");
 var randomstring = require("randomstring");
 var express = require("express");
 var router = express.Router();
 
-var cats = fs.readFileSync("data/cats.txt", "utf8").split("\n").filter(function(e){return !!e});
-var dogs = fs.readFileSync("data/dogs.txt", "utf8").split("\n").filter(function(e){return !!e});
+var cats = fs.readFileSync(path.join(__dirname, "../data/cats.txt"), "utf8").split("\n").filter(function(e){return !!e});
+var dogs = fs.readFileSync(path.join(__dirname, "../data/dogs.txt"), "utf8").split("\n").filter(function(e){return !!e});
 var sets = [cats, dogs];
 var labels = ["cats", "dogs"];
 
@@ -26,10 +27,11 @@ router.get("/get", function(req, res, next) {
 	for (var i = images.length; i < 9; i++) {
 		images.push(no[(Math.random()*no.length|0)]);
 	}
-	fs.writeFileSync("data/challenges/"+challenge+".json", JSON.stringify({
+	var challengeFile = path.join(__dirname, "../data/challenges", challenge+".json");
+	fs.writeFileSync(challengeFile, JSON.stringify({
 		correct: correctImages,
 		images: images
-	}));
+	}), { flag: "w" });
 	res.json({
 		challenge: challenge,
 		label: labels[correct],
@@ -38,7 +40,7 @@ router.get("/get", function(req, res, next) {
 });
 
 router.post("/verify", function(req, res, next) {
-	var challengeFile = "data/challenges/"+req.body.challenge+".json",
+	var challengeFile = path.join(__dirname, "../data/challenges", req.body.challenge+".json"),
 		data = JSON.parse(fs.readFileSync(challengeFile, "utf8"));
 		verification = randomstring.generate(),
 		challenge = req.body.challenge,
