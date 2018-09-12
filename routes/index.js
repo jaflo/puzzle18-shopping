@@ -8,7 +8,7 @@ var rp = require("request-promise");
 setInterval(findRemoveSync.bind(this, "data/challenges", {
 	age: { seconds: 3600 },
 	extensions: [".json"]
-}), 3600);
+}), 600); // every 10 minutes
 
 var topass = process.env.COUPONS_FINISH,
 	forcaptcha = process.env.COUPONS_CAPTCHA;
