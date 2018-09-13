@@ -6,9 +6,9 @@ var router = express.Router();
 var rp = require("request-promise");
 
 setInterval(findRemoveSync.bind(this, "data/challenges", {
-	age: { seconds: 3600 },
+	age: { seconds: 600 }, // older than 10 minutes
 	extensions: [".json"]
-}), 600); // every 10 minutes
+}), 60); // every minute
 
 var topass = process.env.COUPONS_FINISH,
 	forcaptcha = process.env.COUPONS_CAPTCHA;
